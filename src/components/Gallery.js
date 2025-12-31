@@ -80,6 +80,11 @@ const Gallery = () => {
       url: 'https://lyskh.github.io/my-portfolio/',
       title: 'This Site',
       iframe: 'https://lyskh.github.io/my-portfolio/'
+    },
+    {
+      url: 'https://digital-visitor-log-12121.web.app/',
+      title: 'Digital Visitor Log',
+      iframe: 'https://digital-visitor-log-12121.web.app/'
     }
   ];
 
