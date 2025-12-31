@@ -72,7 +72,6 @@ const Contact = () => {
 
       // Formspree returns 200/201 for success, 422 for validation errors
       if (response.ok) {
-        // Prefer SPA navigation so Netlify/Routing behave consistently
         try {
           navigate('/thank-you');
         } catch (navErr) {
@@ -81,20 +80,50 @@ const Contact = () => {
         return;
       }
 
-      // attempt to parse any JSON error detail from Formspree
-      let errText = 'Form submission failed';
+      // if JSON submit failed, attempt form-encoded / FormData fallback (some endpoints expect form posts)
+      // This helps when the API rejects application/json but accepts form submissions.
       try {
-        const data = await response.json();
-        if (data && data.errors) {
-          errText = data.errors.map((x) => x.message || x).join(', ');
-        } else if (data && data.type) {
-          errText = data.type;
-        }
-      } catch (parseErr) {
-        // ignore parse errors, keep generic message
-      }
+        const formDataFallback = new FormData();
+        formDataFallback.append('name', payload.name);
+        formDataFallback.append('email', payload.email);
+        formDataFallback.append('message', payload.message);
 
-      throw new Error(errText || `Submission failed (status ${response.status})`);
+        const fallbackResp = await fetch(form.action, {
+          method: form.method || 'POST',
+          body: formDataFallback,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (fallbackResp.ok) {
+          try {
+            navigate('/thank-you');
+          } catch (navErr) {
+            window.location.href = '/thank-you';
+          }
+          return;
+        }
+
+        // parse fallback response details if available
+        let fbErr = `Submission failed (status ${fallbackResp.status})`;
+        try {
+          const data = await fallbackResp.json();
+          if (data && data.errors) fbErr = data.errors.map((x) => x.message || x).join(', ');
+        } catch (_) {}
+        throw new Error(fbErr);
+      } catch (fallbackError) {
+        let errText = 'Form submission failed';
+        try {
+          const data = await response.json();
+          if (data && data.errors) {
+            errText = data.errors.map((x) => x.message || x).join(', ');
+          } else if (data && data.type) {
+            errText = data.type;
+          }
+        } catch (_) {}
+        throw new Error(errText || `Submission failed (status ${response.status})`);
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
       alert(error.message || 'There was an error sending your message. Please try again.');
@@ -190,8 +219,7 @@ const Contact = () => {
             required
           ></textarea>
 
-          <input type="hidden" name="_captcha" value="true" />
-          <input type="hidden" name="_next" value="/thank-you" />
+          {/* _captcha and _next removed: we handle redirect client-side and avoid server-side redirect conflicts on Netlify SPA */}
 
           <button type="submit" disabled={isSubmitting}>
             {isSubmitting ? 'Sending...' : 'Send Message'}
