@@ -1,0 +1,83 @@
+.thank-you-page {
+  min-height: 100vh;
+  background-color: rgb(255, 255, 249);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+.thank-you-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: center;
+}
+
+.thank-you-container h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  color: #65481f;
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+}
+
+.thank-you-container p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.signature {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.btn-home {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #65481f;
+  padding: 12px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 2rem;
+  transition: background-color 0.3s ease-in-out;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.btn-home:hover {
+  background-color: #333;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .thank-you-container {
+    padding: 30px 20px;
+  }
+
+  .thank-you-container h1 {
+    font-size: 2rem;
+  }
+
+  .thank-you-container p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .thank-you-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .thank-you-container p {
+    font-size: 0.9rem;
+  }
+}
+
+

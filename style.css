@@ -1,0 +1,446 @@
+/* Global Styles */
+body {
+    background-color: rgb(255, 255, 249);
+    font-family: 'Poppins', sans-serif; 
+    overflow-x: hidden;
+}
+
+body a {
+    color: #333;
+}
+
+h1, h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+.lead {
+    margin-top: 0rem;
+    margin-left: 0rem;
+}
+
+/* Contact Form */
+form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    background-color: #65481f;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  
+/* Navigation Bar */
+nav, #navbar-example2 {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: #333;
+}
+
+.navbar-toggler {
+    background-color: #d1b19d;
+}
+
+.navbar-brand {
+    color: #ffffff;
+}
+
+.nav-link {
+    color: #ffffff;
+}
+
+.nav-link.active {
+    text-decoration-color: #ffffff;
+}
+
+.nav-link:hover {
+    color: #d1b19d;
+}
+
+/* Sections and Layouts */
+section {
+    display: flex;
+    align-items: center;
+}
+
+.intro {
+    height: 100vh;
+    background: radial-gradient(circle at center,  
+        #fffdfc 0%,  /* Nearly pure white with a *hint* of blush */  
+        #fcf6f3 40%,  /* Whisper-light warm beige-pink */  
+        #f8eae5 80%   /* Soft pastel peachy-cream */  
+    );
+    color: #4a4a4a;
+    margin-top: 2px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+}
+
+.intro img {
+    max-width: 100%;
+    height: 500px;
+    display: block;
+}
+
+.about {
+    height: fit-content;
+    padding: 40px 0;
+}
+
+.about img {
+    height: 100px;
+}
+
+.line img {
+    margin-left: 0px;
+}
+
+.view {
+    margin-left: 0px;
+}
+
+.skill-ex, footer {
+    height: 100%;
+}
+
+.info {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s ease-in-out;
+}
+
+footer a:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Cards and Gallery */
+.card {
+    position: relative;
+    height: 500px;
+    min-height: 440px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    max-width: 100%;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card.work {
+    height: 670px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.6s ease-in-out;
+}
+
+.gallery-item img {
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+.iframe-container {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    height: 600px; /* Adjust as needed */
+    border: 2px solid #ddd;
+    overflow: hidden;
+}
+.iframe-container iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.live-projects {
+    display: flexbox;
+    align-items: center;
+}
+
+.sw-1 img {
+    height: 250px;
+    width: 300px;
+}
+
+.sw-2 img {
+    height: 300px;
+    width: 400px;
+}
+
+/* Buttons and Effects */
+.btn-outline-dark {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-dark:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+}
+
+.accordion {
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.accordion:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.accordion button {
+    color: #ffffff;
+    background-color: #d1b19d;
+}
+
+.progress {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .intro {
+        height: 70vh;
+    }
+    .gallery {
+        gap: 10px;
+    }
+    .gallery-item img {
+        align-items: center;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+    .card {
+        height: auto;
+        width: auto;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .card.work {
+        width: auto;
+        height: auto;
+    }
+    .iframe-container {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        height: auto; /* Adjust as needed */
+        border: 2px solid #ddd;
+        overflow: hidden;
+    }
+    .iframe-container iframe {
+        width: auto;
+        height: auto;
+    }
+    
+}
+@media (max-width: 768px) {
+    .lead {
+        background: linear-gradient(135deg, #0c0c0c, #1b1b1b);
+        color: #ffffff;
+        padding: 20px;
+        opacity: 0.8;
+        margin-top: 2rem;
+        margin-left: 2rem;
+        text-align: center;
+    }
+    .gallery {
+        gap: 10px;
+    }
+    .gallery-item img {
+        align-items: center;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+    .iframe-container {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        height: auto; /* Adjust as needed */
+        border: 2px solid #ddd;
+        overflow: hidden;
+    }
+    .iframe-container iframe {
+        width: auto;
+        height: auto;
+    }
+    .card {
+        height: auto;
+        width: auto;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .card.work {
+        width: auto;
+        height: auto;
+    }
+    section {
+        flex-direction: column;
+        text-align: center;
+    }
+    .intro {
+        background-color: #d1b19d;
+        color: #ffffff;
+        height: 80vh;
+    }
+    .intro img {
+        display: none;
+    }
+    .intro a {
+        color: #ffffff;
+    }
+    .progress {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .about {
+        padding: 50px 20px;
+    }
+    .about img {
+        height: 60px;
+    }
+    .line img {
+        height: 60px;
+        margin-left: 15px;
+    }
+    .line, .view {
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .lead {
+        background-color: #cea5a5;
+        color: #ffffff;
+        padding: 20px;
+        font-size: 1rem;
+        margin-right: 25px;
+    }
+    .iframe-container {
+        width: 100%;
+        margin-bottom: 10px;
+        height: auto; /* Adjust as needed */
+        border: 2px solid #ddd;
+        overflow: hidden;
+    }
+    .iframe-container iframe {
+        width: 100%;
+        height: auto;
+    }
+    
+    .card {
+        height: auto;
+        width: auto;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    .card.work {
+        width: auto;
+        height: auto;
+    }
+    .gallery {
+        gap: 10px;
+    }
+    .gallery-item img {
+        align-items: center;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+    
+    .intro {
+        background-color: #d1b19d;
+        color: #ffffff;
+        height: 80vh;
+    }
+    .intro img {
+        display: none;
+    }
+    .intro a {
+        color: #ffffff;
+    }
+    .progress {
+        width: 90%;
+        margin: 0 auto;
+    }
+    h1, h2 {
+        font-size: 1.3rem;
+    }
+    .card {
+        min-height: 450px;
+        padding: 10px;
+    }
+    .about img {
+        height: 50px;
+    }
+}
+
+/* Animation for Sections */
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

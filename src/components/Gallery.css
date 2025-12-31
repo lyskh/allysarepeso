@@ -1,0 +1,272 @@
+.gallery-section {
+  padding: 50px 0;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.gallery-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-divider {
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+}
+
+.section-divider img {
+  height: 100px;
+  max-width: 100%;
+}
+
+.section-title {
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #4a4a4a;
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.gallery-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+.journal-gallery .gallery-item img {
+  max-width: 400px;
+  height: 300px;
+}
+
+/* Carousel styles (single-row carousels) */
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 6px;
+  margin-bottom: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.04);
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px;
+  width: 100%;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeInUp 0.6s ease both;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, filter 260ms ease;
+}
+
+.carousel-item img:hover {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  filter: saturate(1.05);
+}
+
+.carousel-control {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(0,0,0,0.06);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.carousel-control:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+
+.carousel-control:active { transform: translateY(-1px); }
+
+/* Hide scrollbar visually but keep functionality */
+.carousel-track::-webkit-scrollbar { height: 8px; }
+.carousel-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 8px; }
+
+/* Journal variation: slightly larger items */
+.carousel.journal .carousel-item { width: 380px; }
+.carousel.journal .carousel-item img { height: 260px; }
+
+/* style svg icons inside controls */
+.carousel-control svg { color: #65481f; width: 18px; height: 18px; }
+
+/* staggered entry for items (limited to first 12) */
+.carousel-item:nth-child(1) { animation-delay: 0.04s; }
+.carousel-item:nth-child(2) { animation-delay: 0.08s; }
+.carousel-item:nth-child(3) { animation-delay: 0.12s; }
+.carousel-item:nth-child(4) { animation-delay: 0.16s; }
+.carousel-item:nth-child(5) { animation-delay: 0.20s; }
+.carousel-item:nth-child(6) { animation-delay: 0.24s; }
+.carousel-item:nth-child(7) { animation-delay: 0.28s; }
+.carousel-item:nth-child(8) { animation-delay: 0.32s; }
+.carousel-item:nth-child(9) { animation-delay: 0.36s; }
+.carousel-item:nth-child(10) { animation-delay: 0.40s; }
+.carousel-item:nth-child(11) { animation-delay: 0.44s; }
+.carousel-item:nth-child(12) { animation-delay: 0.48s; }
+
+/* ensure items snap in place for good UX */
+.carousel-item { scroll-snap-align: center; }
+
+.gallery-subtitle {
+  text-align: center;
+  margin: 1.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #4a4a4a;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.live-project {
+  margin-bottom: 2.5rem;
+}
+
+.iframe-container {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 1.5rem;
+  height: 600px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.live-project-button {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.live-project .btn {
+  padding: 12px 30px;
+  border: 2px solid #333;
+  background-color: transparent;
+  color: #333;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  text-decoration: none;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+}
+
+.live-project .btn:hover {
+  background-color: #333;
+  color: white;
+  transform: scale(1.05);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2.5rem 0;
+}
+
+@media (max-width: 1024px) {
+  .gallery {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .gallery-item img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .journal-gallery .gallery-item img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-section {
+    padding: 50px 0;
+  }
+
+  .section-divider img {
+    height: 60px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .iframe-container {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-divider img {
+    height: 50px;
+  }
+
+  .iframe-container {
+    height: 300px;
+  }
+}
+

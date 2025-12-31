@@ -1,0 +1,144 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: #333;
+  padding: 1rem 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.navbar-brand {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-brand:hover {
+  color: #d1b19d;
+}
+
+.navbar-toggler {
+  display: none;
+  flex-direction: column;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  gap: 5px;
+}
+
+.navbar-toggler span {
+  width: 25px;
+  height: 3px;
+  background-color: #d1b19d;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-toggler.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.3s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.nav-link:hover {
+  color: #d1b19d;
+}
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: flex;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    /* use scale + opacity for smoother open/close animation */
+    transform-origin: top center;
+    transform: scaleY(0);
+    opacity: 0;
+    overflow: hidden;
+    transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 200ms ease-in-out;
+  }
+
+  .navbar-collapse.show {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  .navbar-toggler span {
+    width: 25px;
+    height: 3px;
+    background-color: #d1b19d;
+    transition: transform 240ms ease-in-out, opacity 180ms ease-in-out, background-color 180ms ease-in-out;
+    backface-visibility: hidden;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    padding: 1rem 20px;
+    gap: 0;
+  }
+
+  .nav-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Reuse fadeInUp animation for navbar when on Services route */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Only apply the fade animation for Services on larger screens; disable on small screens to avoid double animations */
+@media (min-width: 769px) {
+  .services-route .navbar-collapse.show {
+    animation: fadeInUp 0.45s ease both;
+  }
+
+  .services-route {
+    animation: fadeInUp 0.4s ease both;
+  }
+}
+
