@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Contact.css';
 import footerWhale from '../assets/footer.png';
 
@@ -10,6 +11,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const contactRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const node = contactRef.current; // capture once
@@ -50,38 +52,52 @@ const Contact = () => {
       return String(str).replace(/<[^>]*>/g, '').trim();
     };
 
-    const form = e.target;
-    const formDataToSend = new FormData();
-    formDataToSend.append('name', sanitize(formData.name));
-    formDataToSend.append('email', sanitize(formData.email));
-    formDataToSend.append('message', sanitize(formData.message));
-    // include hidden fields expected by Formspree
-    const hiddenCaptcha = form.querySelector('input[name="_captcha"]');
-    const hiddenNext = form.querySelector('input[name="_next"]');
-    if (hiddenCaptcha) formDataToSend.append('_captcha', sanitize(hiddenCaptcha.value));
-    if (hiddenNext) formDataToSend.append('_next', sanitize(hiddenNext.value));
+    const payload = {
+      name: sanitize(formData.name),
+      email: sanitize(formData.email),
+      message: sanitize(formData.message)
+    };
 
     try {
+      const form = e.target;
+
       const response = await fetch(form.action, {
-        method: form.method,
-        body: formDataToSend,
+        method: form.method || 'POST',
         headers: {
-          'Accept': 'application/json'
-        }
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
       });
 
+      // Formspree returns 200/201 for success, 422 for validation errors
       if (response.ok) {
-        window.location.href = '/thank-you';
-      } else {
-        const data = await response.json();
-        if (data.errors) {
-          console.error('Form errors:', data.errors);
+        // Prefer SPA navigation so Netlify/Routing behave consistently
+        try {
+          navigate('/thank-you');
+        } catch (navErr) {
+          window.location.href = '/thank-you';
         }
-        throw new Error('Form submission failed');
+        return;
       }
+
+      // attempt to parse any JSON error detail from Formspree
+      let errText = 'Form submission failed';
+      try {
+        const data = await response.json();
+        if (data && data.errors) {
+          errText = data.errors.map((x) => x.message || x).join(', ');
+        } else if (data && data.type) {
+          errText = data.type;
+        }
+      } catch (parseErr) {
+        // ignore parse errors, keep generic message
+      }
+
+      throw new Error(errText || `Submission failed (status ${response.status})`);
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('There was an error sending your message. Please try again.');
+      alert(error.message || 'There was an error sending your message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
