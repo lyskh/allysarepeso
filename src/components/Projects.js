@@ -8,6 +8,9 @@ const Projects = () => {
   const projectsRef = useRef(null);
 
   useEffect(() => {
+    const node = projectsRef.current; // capture once
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -19,14 +22,10 @@ const Projects = () => {
       { threshold: 0.1 }
     );
 
-    if (projectsRef.current) {
-      observer.observe(projectsRef.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (projectsRef.current) {
-        observer.unobserve(projectsRef.current);
-      }
+      observer.unobserve(node); // safe, stable reference
     };
   }, []);
 

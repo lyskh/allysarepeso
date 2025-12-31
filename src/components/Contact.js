@@ -12,6 +12,9 @@ const Contact = () => {
   const contactRef = useRef(null);
 
   useEffect(() => {
+    const node = contactRef.current; // capture once
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,14 +26,10 @@ const Contact = () => {
       { threshold: 0.1 }
     );
 
-    if (contactRef.current) {
-      observer.observe(contactRef.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (contactRef.current) {
-        observer.unobserve(contactRef.current);
-      }
+      observer.unobserve(node); // safe, stable reference
     };
   }, []);
 

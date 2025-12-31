@@ -25,15 +25,17 @@ const Services = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
+    const node = sectionRef.current; // capture once
+    if (!node) return;
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) el.classList.add('visible');
+        if (entry.isIntersecting) node.classList.add('visible');
       });
     }, { threshold: 0.1 });
-    obs.observe(el);
-    return () => obs.disconnect();
+    obs.observe(node);
+    return () => {
+      obs.unobserve(node); // safe, stable reference
+    };
   }, []);
 
   const scrollToContact = (e) => {

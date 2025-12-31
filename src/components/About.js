@@ -11,6 +11,9 @@ const About = () => {
   const aboutRef = useRef(null);
 
   useEffect(() => {
+    const node = aboutRef.current; // capture once
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -30,14 +33,10 @@ const About = () => {
       { threshold: 0.1 }
     );
 
-    if (aboutRef.current) {
-      observer.observe(aboutRef.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (aboutRef.current) {
-        observer.unobserve(aboutRef.current);
-      }
+      observer.unobserve(node); // safe, stable reference
     };
   }, []);
 

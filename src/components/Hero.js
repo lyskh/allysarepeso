@@ -8,6 +8,9 @@ const Hero = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const node = heroRef.current; // capture once
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -19,14 +22,10 @@ const Hero = () => {
       { threshold: 0.1 }
     );
 
-    if (heroRef.current) {
-      observer.observe(heroRef.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (heroRef.current) {
-        observer.unobserve(heroRef.current);
-      }
+      observer.unobserve(node); // safe, stable reference
     };
   }, []);
 

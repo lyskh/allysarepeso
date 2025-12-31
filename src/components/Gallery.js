@@ -17,14 +17,14 @@ import sample8 from '../assets/gallery/sample-8.png';
 import sample9 from '../assets/gallery/sample-9.png';
 import sample10 from '../assets/gallery/sample-10.png';
 import sample11 from '../assets/gallery/sample-11.png';
-import work1 from '../assets/work-1.png';
-import work2 from '../assets/work-2.png';
-import work3 from '../assets/work-3.png';
 
 const Gallery = () => {
   const galleryRef = useRef(null);
 
   useEffect(() => {
+    const node = galleryRef.current; // capture once
+    if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -36,14 +36,10 @@ const Gallery = () => {
       { threshold: 0.1 }
     );
 
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
-    }
+    observer.observe(node);
 
     return () => {
-      if (galleryRef.current) {
-        observer.unobserve(galleryRef.current);
-      }
+      observer.unobserve(node); // safe, stable reference
     };
   }, []);
 
