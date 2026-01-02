@@ -84,7 +84,7 @@ const Services = () => {
               <li><FaCheckCircle className="list-icon"/> 1 round of revisions</li>
             </ul>
             <p><strong>Timeline:</strong> Typical turnaround is 2–3 weeks, depending on scope and responsiveness.</p>
-            <p><strong>Investment:</strong> Starting at ₱22,000 — final pricing depends on content, number of pages, and overall requirements.</p>
+            <p><strong>Investment:</strong> Final pricing depends on content, number of pages, and overall requirements.</p>
           </div>
 
           <div className="package card-shadow animated-card">
@@ -109,7 +109,7 @@ const Services = () => {
               <li><FaCheckCircle className="list-icon"/> 1 round of revisions</li>
             </ul>
             <p><strong>Timeline:</strong> Typical turnaround is 3–4 weeks.</p>
-            <p><strong>Investment:</strong> Starting at ₱35,000 — final pricing depends on product count and functionality.</p>
+            <p><strong>Investment:</strong> Final pricing depends on product count and functionality.</p>
             <p className="muted">This package is intended for simple e-commerce needs only. Large catalogs or advanced custom features are not included.</p>
           </div>
         </div>
