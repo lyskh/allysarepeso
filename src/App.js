@@ -8,6 +8,7 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import ThankYou from './components/ThankYou';
+import AnalyticsTracker from './AnalyticsTracker';
 import './App.css';
 const Services = lazy(() => import('./components/Services'));
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <ScrollToTop />
+      <AnalyticsTracker />
       <Routes>
         <Route path="/" element={
           <>
